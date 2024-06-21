@@ -36,16 +36,18 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script>
-        // Acceder a la cámara del dispositivo
-        const video = document.getElementById('background-video');
-
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
-                video.srcObject = stream;
-            })
-            .catch(err => {
-                console.error("Error al acceder a la cámara: ", err);
-            });
+        // Acceder a la cámara trasera del dispositivo
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: { exact: 'environment' } // Esto selecciona la cámara trasera
+            }
+        })
+        .then(stream => {
+            video.srcObject = stream;
+        })
+        .catch(err => {
+            console.error("Error al acceder a la cámara trasera: ", err);
+        });
 
         // Crear la escena
         const scene = new THREE.Scene();
