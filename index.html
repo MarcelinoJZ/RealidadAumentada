@@ -38,8 +38,8 @@
     <script>
         // Acceder a la cámara trasera del dispositivo
         navigator.mediaDevices.getUserMedia({
-            video: {
-                facingMode: { exact: 'environment' } // Esto selecciona la cámara trasera
+        video: {
+            facingMode: 'environment' // Intenta con esta opción
             }
         })
         .then(stream => {
